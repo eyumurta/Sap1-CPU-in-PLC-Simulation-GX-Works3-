@@ -1,0 +1,15 @@
+//LM	Bit	VAR_INPUT	Transfer value to Ram
+//CLOCK	Bit	VAR_INPUT	Positive CLK Sync Signal
+//CLK_RTrigger	R_TRIG	VAR	
+//W_Bus_8Bit	Word [Unsigned]/Bit String [16-bit]	VAR_IN_OUT	W_Bus_Value
+//Ram_Adress_Bus_4Bit	Word [Unsigned]/Bit String [16-bit]	VAR_IN_OUT	Ram Bus Value
+//Mar_Reg_Val_4bit	Word [Unsigned]/Bit String [16-bit]	VAR	
+
+
+IF NOT LM AND CLK_RTrigger.Q  THEN
+	Mar_Reg_Val_4bit := W_Bus_8Bit;
+	Ram_Adress_Bus_4Bit :=Mar_Reg_Val_4bit;
+END_IF;
+
+
+CLK_RTrigger(CLK:=CLOC
