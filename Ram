@@ -1,0 +1,13 @@
+//Ram_Adress_Bus_4Bit	Word [Unsigned]/Bit String [16-bit]	VAR_IN_OUT	
+//Ram_Memory	Word [Unsigned]/Bit String [16-bit](0..15)	VAR_IN_OUT	
+//W_Bus_8Bit	Word [Unsigned]/Bit String [16-bit]	VAR_IN_OUT	
+//CE	Bit	VAR_INPUT	Ram To Ram Bus
+
+//8 bit 16 cell RAM
+
+IF NOT CE THEN
+	W_Bus_8Bit := Ram_Memory[Ram_Adress_Bus_4Bit];
+END_IF;
+
+
+	
