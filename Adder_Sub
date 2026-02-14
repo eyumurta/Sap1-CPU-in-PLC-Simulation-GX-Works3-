@@ -1,0 +1,29 @@
+//Eu	Bit	VAR_INPUT			
+//Su	Bit	VAR_INPUT			
+//CLOCK	Bit	VAR_INPUT			
+//CLR	Bit	VAR_INPUT			
+//W_Bus_8Bit	Word [Unsigned]/Bit String [16-bit]	VAR_IN_OUT			
+//Add_Sub_Value	Word [Unsigned]/Bit String [16-bit]	VAR			
+//CLK_RTrigger	R_TRIG	VAR			
+//B_Bus_8Bit	Word [Unsigned]/Bit String [16-bit]	VAR_IN_OUT			
+//Ac_Bus_8Bit	Word [Unsigned]/Bit String [16-bit]	VAR_IN_OUT			
+
+
+/*Adder and Subtractor*/
+IF  Eu AND Su THEN
+	//Sub
+	WAND( TRUE , (Ac_Bus_8Bit - B_Bus_8Bit) , 255 , Add_Sub_Value ); //masking 1111 1111. Because Sap1 is 8 bit
+	 W_Bus_8Bit :=Add_Sub_Value;
+END_IF;
+
+IF Eu AND NOT Su THEN
+WAND( TRUE , (Ac_Bus_8Bit + B_Bus_8Bit) , 255 , Add_Sub_Value ); //masking 1111 1111. Because Sap1 is 8 bit
+W_Bus_8Bit :=Add_Sub_Value;
+END_IF;
+
+/*Reset To Register value*/
+IF NOT CLR THEN
+	Add_Sub_Value := 0;
+END_IF;
+
+CLK_RTrigger(CLK:= CLOCK);
