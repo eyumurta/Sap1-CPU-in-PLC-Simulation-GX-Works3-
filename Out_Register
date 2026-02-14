@@ -1,0 +1,20 @@
+//Lo	Bit	VAR_INPUT			
+//CLOCK	Bit	VAR_INPUT			
+//CLR	Bit	VAR_INPUT			Negative CLere tor Pc Value
+//W_Bus_8Bit	Word [Unsigned]/Bit String [16-bit]	VAR_IN_OUT			Wbus value 8 bit
+//OUT_Value	Word [Unsigned]/Bit String [16-bit]	VAR_OUTPUT			
+//CLK_RTrigger	R_TRIG	VAR			
+
+/*Transfer WBUS Value To OUT */
+IF NOT Lo AND CLK_RTrigger.Q   THEN
+	OUT_Value := W_Bus_8Bit ;
+
+END_IF;
+
+
+/*Reset To OUT*/
+IF NOT CLR THEN
+	OUT_Value := 0;
+END_IF;
+
+CLK_RTrigger(CLK:= CLOCK);
