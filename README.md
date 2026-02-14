@@ -45,5 +45,5 @@ HLT Instruction:
   
 Every T state have different control signal: Check the case on simulated program.
 
-More Details About SAP1 CPU: Digital Computer Electronics-Third Ecucation-Albert Paul Malvino,Jerald A. Brown/Page-140
+More Details About SAP1 CPU: Digital Computer Electronics-Third Edition-Albert Paul Malvino,Jerald A. Brown/Page-140
 
