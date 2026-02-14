@@ -1,0 +1,29 @@
+//Cp	Bit	VAR_INPUT			Transfer PC value to WBus
+//Ep	Bit	VAR_INPUT			Increamnt Pc Value
+//CLOCK	Bit	VAR_INPUT			Negative CLK Sync Signal
+//CLR	Bit	VAR_INPUT			Negative CLere tor Pc Value
+//W_Bus_8Bit	Word [Unsigned]/Bit String [16-bit]	VAR_IN_OUT			Wbus value 8 bit
+//PC_Value	Word [Unsigned]/Bit String [16-bit]	VAR			
+//CLK_RTrigger	R_TRIG	VAR			
+
+/*Transfer PC Value To WBUS*/
+IF Ep AND CLK_RTrigger.Q THEN
+	W_Bus_8Bit := PC_Value;
+END_IF;
+
+/*Increment the PC Value*/
+IF Cp AND CLK_RTrigger.Q THEN
+	PC_Value := PC_Value+1;
+END_IF;
+
+/*When moment of overflow load 0 to PC value*/
+IF Cp AND CLK_RTrigger.Q AND (PC_Value =15) THEN
+	PC_Value := 0;
+END_IF;
+
+/*Reset To PC value*/
+IF NOT CLR THEN
+	PC_Value := 0;
+END_IF;
+
+CLK_RTrigger(CLK:= CLOCK);
