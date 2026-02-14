@@ -1,0 +1,28 @@
+//La	Bit	VAR_INPUT			
+//Ea	Bit	VAR_INPUT			
+//CLOCK	Bit	VAR_INPUT			
+//CLR	Bit	VAR_INPUT			
+//W_Bus_8Bit	Word [Unsigned]/Bit String [16-bit]	VAR_IN_OUT			Wbus value 8 bit
+//Ac_Value	Word [Unsigned]/Bit String [16-bit]	VAR			
+//CLK_RTrigger	R_TRIG	VAR			
+//Ac_Bus_8Bit	Word [Unsigned]/Bit String [16-bit]	VAR_IN_OUT			
+
+
+/*Transfer WBUS Value To Ac */
+IF NOT La AND CLK_RTrigger.Q   THEN
+	Ac_Value := W_Bus_8Bit ;
+	Ac_Bus_8Bit := Ac_Value;
+END_IF;
+
+/*Load Ac Value to WBus*/
+IF Ea AND CLK_RTrigger.Q THEN
+	W_Bus_8Bit :=Ac_Value;
+END_IF;
+
+
+/*Reset To Accumulator value*/
+IF NOT CLR THEN
+	Ac_Value := 0;
+END_IF;
+
+CLK_RTrigger(CLK:= CLOCK);
