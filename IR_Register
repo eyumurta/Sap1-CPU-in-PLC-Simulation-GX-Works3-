@@ -1,0 +1,30 @@
+//Li	Bit	VAR_INPUT			
+//Eii	Bit	VAR_INPUT			
+//CLOCK	Bit	VAR_INPUT			
+//CLR	Bit	VAR_INPUT			Negative CLere tor Pc Value
+//W_Bus_8Bit	Word [Unsigned]/Bit String [16-bit]	VAR_IN_OUT			Wbus value 8 bit
+//IR_Value	Word [Unsigned]/Bit String [16-bit]	VAR			
+//CLK_RTrigger	R_TRIG	VAR			
+//Con_Bus_8Bit	Word [Unsigned]/Bit String [16-bit]	VAR_IN_OUT			
+
+/*Transfer WBUS Value To IR */
+IF NOT Li AND CLK_RTrigger.Q THEN
+	IR_Value :=W_Bus_8Bit ;
+END_IF;
+
+
+
+/*Decode instruction and load Controller Sequence Bus*/
+IF NOT Eii AND CLK_RTrigger.Q THEN
+	
+	
+	W_Bus_8Bit :=(IR_Value & 15);  //Mask with 1111
+END_IF;
+Con_Bus_8Bit :=SHR((IR_Value & 240 ),4); //Mask with 1111 0000 ve 4bit shift right.
+/*Reset To IR value*/
+IF NOT CLR THEN
+	IR_Value := 0;
+END_IF;
+
+CLK_RTrigger(CLK:= CLOCK);
+
