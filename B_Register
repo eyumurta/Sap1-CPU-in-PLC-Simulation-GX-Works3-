@@ -1,0 +1,22 @@
+//Lb	Bit	VAR_INPUT	
+//CLOCK	Bit	VAR_INPUT	
+//CLR	Bit	VAR_INPUT	
+//W_Bus_8Bit	Word [Unsigned]/Bit String [16-bit]	VAR_IN_OUT	
+//B_Value	Word [Unsigned]/Bit String [16-bit]	VAR	
+//CLK_RTrigger	R_TRIG	VAR	
+//B_Bus_8Bit	Word [Unsigned]/Bit String [16-bit]	VAR_IN_OUT	
+
+
+/*Transfer WBUS Value To B Register */
+IF NOT Lb AND CLK_RTrigger.Q THEN
+	B_Value := W_Bus_8Bit ;
+	B_Bus_8Bit := B_Value;
+END_IF;
+
+
+/*Reset To B Register value*/
+IF NOT CLR THEN
+	B_Value := 0;
+END_IF;
+
+CLK_RTrigger(CLK:= CLOCK);
