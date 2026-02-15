@@ -1,3 +1,8 @@
+🇺🇸 English | 🇹🇷 Türkçe
+
+[English Version](README_EN.md)
+[Turkish Version](README_TR.md)
+
 # Sap1-CPU-in-PLC-Simulation-GX-Works3-
 SAP1 Cpu simulation on PLC
 
