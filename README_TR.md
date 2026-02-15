@@ -1,6 +1,6 @@
 🇺🇸 English | 🇹🇷 Türkçe
 
-[English Version](README_EN.md)
+[English Version](README.md)
 [Turkish Version](README_TR.md)
 
 # Sap1-CPU-in-PLC-Simulation-GX-Works3
